@@ -6,37 +6,49 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    InputActionAsset actionsAsset;
+    private float _moveSpeed = 4f;
+    [SerializeField]
+    private float _jumpForce = 10f;
+
+    [SerializeField]
+    private BoxCollider _movementBounds;
 
     private InputAction _moveAction;
+    private Rigidbody _rb;
     private string _actionMapName = "gameplay";
+    private Vector2 _moveVector;
 
     private void Awake()
     {
-        _moveAction = actionsAsset.FindActionMap(_actionMapName).FindAction("move");
-        actionsAsset.FindActionMap(_actionMapName).FindAction("jump").performed += OnJump;
+        _rb = GetComponent<Rigidbody>();
+
+        _moveAction = InputManager.Instance.ActionsAsset.FindActionMap(_actionMapName).FindAction("move");
+        InputManager.Instance.ActionsAsset.FindActionMap(_actionMapName).FindAction("jump").performed += OnJump;
     }
 
     private void Update()
     {
-        Vector2 moveVector = _moveAction.ReadValue<Vector2>();
-
-        Debug.Log(moveVector.ToString());
+        Move(_moveAction.ReadValue<Vector2>());
     }
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump pressed");
+        Debug.Log("Jump!");
+        _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
-    // We need to enable the action map to read the values
-    void OnEnable()
+    public void Move(Vector2 moveVector)
     {
-        actionsAsset.FindActionMap(_actionMapName).Enable();
+        Vector3 v3 = new Vector3(moveVector.x, moveVector.y, 0);
+        _rb.AddForce(v3 * _moveSpeed, ForceMode.Impulse);
     }
 
-    void OnDisable()
+    private void OnTriggerExit(Collider other)
     {
-        actionsAsset.FindActionMap(_actionMapName).Disable();
+        if (other.gameObject != _movementBounds.gameObject) return;
+
+        _rb.velocity = new Vector3(0, _rb.velocity.y, _rb.velocity.z);
+
+        transform.position = other.ClosestPointOnBounds(transform.position);
     }
 }
