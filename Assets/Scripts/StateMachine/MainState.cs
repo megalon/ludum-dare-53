@@ -25,6 +25,7 @@ public class MainState : IState
 
     public bool CheckTransition(StateMachine context)
     {
-        return true;
+        // TODO 
+        return false;
     }
 }

@@ -13,6 +13,14 @@ public class ScreenshakeManager : MonoBehaviour
     private GameObject _cameraObj;
     private Vector3 _cameraStartPos;
 
+
+
+    [SerializeField] private float _landingShakeAmount;
+    [SerializeField] private float _hitShakeAmount;
+
+    public float LandingShakeAmount { get => _landingShakeAmount; }
+    public float HitShakeAmount { get => _hitShakeAmount; }
+
     private void Awake()
     {
         if (Instance != null)
@@ -30,21 +38,21 @@ public class ScreenshakeManager : MonoBehaviour
 
     public void Shake(float amount)
     {
-        Impulse();
+        Impulse(amount);
     }
 
-    void Impulse()
+    void Impulse(float amount)
     {
         StopAllCoroutines();
-        StartCoroutine(DoImpulse());
+        StartCoroutine(DoImpulse(amount));
     }
 
-    IEnumerator DoImpulse()
+    IEnumerator DoImpulse(float intensity)
     {
         float elapsedTime = 0f;
         while (elapsedTime < shakeDuration)
         {
-            Vector3 shakeOffset = Random.insideUnitSphere * shakeIntensity * shakeFalloffCurve.Evaluate(1 - elapsedTime / shakeDuration);
+            Vector3 shakeOffset = Random.insideUnitSphere * intensity * shakeFalloffCurve.Evaluate(1 - elapsedTime / shakeDuration);
             _cameraObj.transform.position = _cameraStartPos + shakeOffset;
 
             elapsedTime += Time.deltaTime;

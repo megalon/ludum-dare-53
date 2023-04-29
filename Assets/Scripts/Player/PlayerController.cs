@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -14,17 +15,19 @@ public class PlayerController : MonoBehaviour
     private float _jumpForce;
     [SerializeField]
     private float _groundedDistance;
+    [SerializeField]
+    private UnityEvent _onWaterSplash;
 
     private Rigidbody _rb;
     private InputAction _moveAction;
     private string _actionMapName = "gameplay";
-    private Vector2 _moveVector;
-    private bool _isXOutOfBounds;
     private bool _isGrounded;
+    private Damageable _damageable;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _damageable = GetComponent<Damageable>();
 
         _moveAction = InputManager.Instance.ActionsAsset.FindActionMap(_actionMapName).FindAction("move");
         InputManager.Instance.ActionsAsset.FindActionMap(_actionMapName).FindAction("jump").performed += OnJump;
@@ -35,6 +38,10 @@ public class PlayerController : MonoBehaviour
         Move(_moveAction.ReadValue<Vector2>());
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _groundedDistance)) {
+            if (!_isGrounded)
+            {
+                _onWaterSplash.Invoke();
+            }
             _isGrounded = true;
         } else
         {
@@ -62,5 +69,10 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.tag.Equals("enemy")) return;
 
+        _damageable.Hurt(1, Damageable.Team.ENEMY);
+    }
 }

@@ -16,6 +16,9 @@ public class CourseManager : MonoBehaviour
     private Vector3 _movement;
     public Vector3 Movement { get => _movement; }
 
+    private float _spawnTimer;
+    private GameObject _latestObject;
+
     private void Awake()
     {
         if (Instance != null)
@@ -28,7 +31,6 @@ public class CourseManager : MonoBehaviour
         _spawnTimer = _spawnInterval;
     }
 
-    private float _spawnTimer;
     private void Update()
     {
         if (_spawnTimer > 0)
@@ -39,6 +41,6 @@ public class CourseManager : MonoBehaviour
 
         _spawnTimer = _spawnInterval;
 
-        _tubeSegmentSpawner.Spawn();
+        _latestObject = _tubeSegmentSpawner.Spawn();
     }
 }
