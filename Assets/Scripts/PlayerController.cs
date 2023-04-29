@@ -12,12 +12,15 @@ public class PlayerController : MonoBehaviour
     private BoxCollider _movementBounds;
     [SerializeField]
     private float _jumpForce;
+    [SerializeField]
+    private float _groundedDistance;
 
     private Rigidbody _rb;
     private InputAction _moveAction;
     private string _actionMapName = "gameplay";
     private Vector2 _moveVector;
     private bool _isXOutOfBounds;
+    private bool _isGrounded;
 
     private void Awake()
     {
@@ -30,11 +33,23 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move(_moveAction.ReadValue<Vector2>());
+
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _groundedDistance)) {
+            _isGrounded = true;
+        } else
+        {
+            _isGrounded = false;
+        }
     }
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump!");
+        Debug.Log("Pressed Jump!");
+
+        if (!_isGrounded) return;
+
+        _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+
         _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
@@ -46,4 +61,6 @@ public class PlayerController : MonoBehaviour
         float clampedX = Mathf.Clamp(transform.position.x, -_movementBounds.bounds.extents.x, _movementBounds.bounds.extents.x);
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
+
+
 }
