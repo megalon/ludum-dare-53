@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     private string _actionMapName = "gameplay";
     private Vector2 _moveVector;
+    private bool _isXOutOfBounds;
 
     private void Awake()
     {
@@ -39,16 +40,28 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector2 moveVector)
     {
-        Vector3 v3 = new Vector3(moveVector.x, moveVector.y, 0);
-        _rb.AddForce(v3 * _moveSpeed, ForceMode.Impulse);
+
+        if (_isXOutOfBounds)
+        {
+            // Get the closest point we're out of bounds to
+            Vector3 closestPoint = _movementBounds.ClosestPoint(transform.position);
+
+            // Move back towards the point on the bounds
+            moveVector.x = Mathf.Sign(closestPoint.x - transform.position.x);
+        }
+
+        _rb.AddForce(new Vector3(moveVector.x, 0, 0) * _moveSpeed * Time.deltaTime, ForceMode.Impulse);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject != _movementBounds.gameObject) return;
 
-        _rb.velocity = new Vector3(0, _rb.velocity.y, _rb.velocity.z);
+        _isXOutOfBounds = true;
+    }
 
-        transform.position = other.ClosestPointOnBounds(transform.position);
+    private void OnTriggerEnter(Collider other)
+    {
+        _isXOutOfBounds = false;
     }
 }
