@@ -1,0 +1,78 @@
+Simple that looks great > complex that looks unfinished
+
+
+Boat delivery game
+
+--- Mechanics ---
+- Boat moves left to right and jumps
+- Camera moves forward in water channel
+- Boat can hit enemies and lose health
+- Losing health drops packages
+- GAME OVER: all packages lost
+- WIN: make it to end of level with any packages
+  - Higher score the more packages you deliver
+  - Score is a 5 star system (delivery rating)
+  
+--- Visuals ---
+Main
+- Boat (main character)
+- Package
+
+Obstacles
+  - Virus (?) (worms?)
+  - Firewall
+  
+Environment
+  - RJ45 Gates
+  - Water texture
+
+Particles effects
+- Splash effect to show speed
+- Hit effects (white clouds? red tint?)
+- Booster fx
+
+Nice To Haves
+- Risk of Rain 2 style artwork
+- Boat idle animation
+- Boat lean animation
+- Boat hit animation
+- Character portrait
+- Timer / boost system
+
+--- Audio ---
+BGM
+- 
+
+SFX (digitally sounding)
+- Jump
+- Landing on water
+- Damage taken
+- Idle boat
+- Menu blip
+- Game start
+- Game over?
+
+
+
+
+
+
+Ideas:
+- Food delivery
+- Paper boy
+- spaceship dodging game like mario party
+- boxes delivery physics game
+- data delivery (email?)
+
+Premise: 
+- email delivery, but you're in the computer
+- delivering data by boat
+
+Boat data delivery
+- steer boat to delivery packages
+- packages are files
+- physics?
+
+
+
+  
