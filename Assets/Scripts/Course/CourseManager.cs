@@ -10,11 +10,15 @@ public class CourseManager : MonoBehaviour
     private TubeSegmentSpawner _tubeSegmentSpawner;
 
     [SerializeField]
+    private GameObject _playerContainer;
+
+    [SerializeField]
     [Range(1, 20)]
     private float _speed = 5;
     public float Speed { get => _speed; }
 
     private float _spawnTimer;
+    private List<Vector3> _coursePoints;
 
     private void Awake()
     {
