@@ -5,7 +5,7 @@ Boat delivery game
 
 --- Mechanics ---
 - Boat moves left to right and jumps
-- Camera moves forward in water channel
+- Objects move down water channel towards camera
 - Boat can hit enemies and lose health
 - Losing health drops packages
 - GAME OVER: all packages lost

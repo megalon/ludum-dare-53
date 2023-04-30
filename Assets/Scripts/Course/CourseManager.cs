@@ -8,16 +8,17 @@ public class CourseManager : MonoBehaviour
 
     [SerializeField]
     private TubeSegmentSpawner _tubeSegmentSpawner;
+    [SerializeField]
+    private MineSpawner _mineSpawner;
 
     [SerializeField]
-    private float _spawnInterval;
+    private float _segmentSpawnInterval;
 
     [SerializeField]
     private Vector3 _movement;
     public Vector3 Movement { get => _movement; }
 
     private float _spawnTimer;
-    private GameObject _latestObject;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class CourseManager : MonoBehaviour
 
         Instance = this;
 
-        _spawnTimer = _spawnInterval;
+        _spawnTimer = _segmentSpawnInterval;
     }
 
     private void Update()
@@ -39,8 +40,9 @@ public class CourseManager : MonoBehaviour
             return;
         }
 
-        _spawnTimer = _spawnInterval;
+        _spawnTimer = _segmentSpawnInterval;
 
-        _latestObject = _tubeSegmentSpawner.Spawn();
+        _tubeSegmentSpawner.Spawn();
+        _mineSpawner.Spawn();
     }
 }
