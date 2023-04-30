@@ -50,11 +50,10 @@ public class CourseManager : MonoBehaviour
         // Get next segment
         CourseTubeSegment currentSegment = _courseSegments[0];
 
-        // Distance from pos to start of this node
-        Debug.DrawLine(_playerContainer.transform.position, currentSegment.NextConnectionPoint.position, Color.red);
-
         Vector3 direction = _playerContainer.transform.position - currentSegment.NextConnectionPoint.position;
         float dot = Vector3.Dot(direction, currentSegment.NextConnectionPoint.forward);
+
+        Debug.DrawRay(_playerContainer.transform.position, -direction, Color.red, dot);
 
         // If the connection point is behind us
         if (dot > 0)
