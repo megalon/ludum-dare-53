@@ -6,6 +6,6 @@ public class CourseMovement : MonoBehaviour
 {
     private void Update()
     {
-        transform.Translate(CourseManager.Instance.Movement * Time.deltaTime);
+        transform.Translate(new Vector3(0, 0, -CourseManager.Instance.Speed) * Time.deltaTime);
     }
 }

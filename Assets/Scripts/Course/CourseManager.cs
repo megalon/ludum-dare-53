@@ -8,15 +8,11 @@ public class CourseManager : MonoBehaviour
 
     [SerializeField]
     private TubeSegmentSpawner _tubeSegmentSpawner;
-    [SerializeField]
-    private MineSpawner _mineSpawner;
 
     [SerializeField]
-    private float _segmentSpawnInterval;
-
-    [SerializeField]
-    private Vector3 _movement;
-    public Vector3 Movement { get => _movement; }
+    [Range(1, 20)]
+    private float _speed = 5;
+    public float Speed { get => _speed; }
 
     private float _spawnTimer;
 
@@ -29,20 +25,37 @@ public class CourseManager : MonoBehaviour
 
         Instance = this;
 
-        _spawnTimer = _segmentSpawnInterval;
+        _spawnTimer = CalculateTimer();
     }
 
     private void Update()
     {
+        if (_speed == 0)
+        {
+            return;
+        }
+
         if (_spawnTimer > 0)
         {
             _spawnTimer -= Time.deltaTime;
             return;
         }
 
-        _spawnTimer = _segmentSpawnInterval;
+        _spawnTimer = CalculateTimer();
 
-        _tubeSegmentSpawner.Spawn();
-        _mineSpawner.Spawn();
+        switch (Random.Range(0, 1))
+        {
+            //case 0: _minefieldSpawner.Spawn(); break;
+            default: _tubeSegmentSpawner.Spawn(); break;
+        }
+    }
+
+    // Since the tube segment is 10 units long,
+    // we need 10 / speed to get the time it takes to move the whole length
+    private float CalculateTimer()
+    {
+        if (_speed == 0) return 0;
+
+        return 10 / _speed;
     }
 }
