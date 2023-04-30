@@ -16,12 +16,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _groundedDistance;
     [SerializeField]
-    private UnityEvent _onWaterSplash;
+    private UnityEvent _onSplashDown;
+    [SerializeField]
+    private UnityEvent _onJump;
+
+    private bool _isGrounded;
+    public bool IsGrounded { get => _isGrounded; }
 
     private Rigidbody _rb;
     private InputAction _moveAction;
     private string _actionMapName = "gameplay";
-    private bool _isGrounded;
     private Damageable _damageable;
 
     private void Awake()
@@ -40,7 +44,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _groundedDistance)) {
             if (!_isGrounded)
             {
-                _onWaterSplash.Invoke();
+                _onSplashDown.Invoke();
             }
             _isGrounded = true;
         } else
@@ -56,8 +60,9 @@ public class PlayerController : MonoBehaviour
         if (!_isGrounded) return;
 
         _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
-
         _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+
+        _onJump.Invoke();
     }
 
     public void Move(Vector2 moveVector)

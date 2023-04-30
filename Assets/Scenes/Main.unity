@@ -5718,6 +5718,7 @@ GameObject:
   - component: {fileID: 6468693009935844709}
   - component: {fileID: 6468693009935844708}
   - component: {fileID: 6468693009935844714}
+  - component: {fileID: 6468693009935844715}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -11435,6 +11436,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1494257135}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1494257138 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5201093573700110844, guid: 7bb7aa3ae0b81104a91c487cbcb827c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494257135}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1562309366 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8030382320692815150, guid: 6c4856f79cd45514ba3fc8eb9032fb59,
@@ -11486,7 +11493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1373c5f8425d249b40fd6aa8d0ec6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathFXSpawner: {fileID: 774670599}
+  _explosionFXSpawner: {fileID: 0}
 --- !u!1 &1613336558
 GameObject:
   m_ObjectHideFlags: 0
@@ -11988,6 +11995,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4124696471424096415}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &4124696471424096418 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5201093573700110844, guid: 7bb7aa3ae0b81104a91c487cbcb827c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4124696471424096415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4667855182186096190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12078,7 +12091,7 @@ MonoBehaviour:
   _movementBounds: {fileID: 1115253867}
   _jumpForce: 3
   _groundedDistance: 0.1
-  _onWaterSplash:
+  _onSplashDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 504371317}
@@ -12090,6 +12103,33 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0.02
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6468693009935844715}
+        m_TargetAssemblyTypeName: WaterParticlesManager, Assembly-CSharp
+        m_MethodName: StartParticleSystems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6468693009935844715}
+        m_TargetAssemblyTypeName: WaterParticlesManager, Assembly-CSharp
+        m_MethodName: StopParticleSystems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -12153,3 +12193,19 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6468693009935844715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613937764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca5caac87a85e34b993baf718a170cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystems:
+  - {fileID: 2383902}
+  - {fileID: 4124696471424096418}
+  - {fileID: 1494257138}

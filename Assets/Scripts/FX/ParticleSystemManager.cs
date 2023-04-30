@@ -7,7 +7,7 @@ public class ParticleSystemManager : MonoBehaviour
     public static ParticleSystemManager Instance;
 
     [SerializeField]
-    private FXSpawner _deathFXSpawner;
+    private FXSpawner _explosionFXSpawner;
 
     private void Awake()
     {
@@ -19,9 +19,9 @@ public class ParticleSystemManager : MonoBehaviour
         Instance = this;
     }
 
-    public void EnemyDied(Vector3 position)
+    public void Explosion(Vector3 position)
     {
-        GameObject obj = _deathFXSpawner.Spawn();
+        GameObject obj = _explosionFXSpawner.Spawn();
         obj.transform.position = position;
     }
 }
