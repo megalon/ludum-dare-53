@@ -39,8 +39,6 @@ public class CourseManager : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(new Vector3(0, 0, -Speed) * Time.deltaTime);
-
         if (_courseSegments.Count <= 0)
         {
             Debug.LogError("Coarse segments queue is empty!");
@@ -51,6 +49,7 @@ public class CourseManager : MonoBehaviour
         CourseTubeSegment currentSegment = _courseSegments[0];
 
         Vector3 direction = _playerContainer.transform.position - currentSegment.NextConnectionPoint.position;
+
         float dot = Vector3.Dot(direction, currentSegment.NextConnectionPoint.forward);
 
         Debug.DrawRay(_playerContainer.transform.position, -direction, Color.red, dot);
@@ -69,6 +68,12 @@ public class CourseManager : MonoBehaviour
             obj.transform.position = segmentAtEndOfList.NextConnectionPoint.position;
             obj.transform.rotation = segmentAtEndOfList.NextConnectionPoint.rotation;
             _courseSegments.Add(obj.GetComponent<CourseTubeSegment>());
+
+            // Get direction again now that we've modified the course
+            direction = _playerContainer.transform.position - _courseSegments[0].NextConnectionPoint.position;
         }
+
+        // Move towards next point
+        transform.Translate(direction.normalized * Speed * Time.deltaTime);
     }
 }
