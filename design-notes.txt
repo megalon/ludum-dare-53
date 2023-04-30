@@ -4,10 +4,10 @@ Simple that looks great > complex that looks unfinished
 Boat delivery game
 
 --- Mechanics ---
-- Boat moves left to right and jumps
-- Objects move down water channel towards camera
-- Boat can hit enemies and lose health
-- Losing health drops packages
+DONE - Boat moves left to right and jumps
+DONE - Objects move down water channel towards camera
+DONE - Boat can hit enemies and lose health
+DONE - Losing health drops packages
 - GAME OVER: all packages lost
 - WIN: make it to end of level with any packages
   - Higher score the more packages you deliver
@@ -15,7 +15,7 @@ Boat delivery game
   
 --- Visuals ---
 Main
-- Boat (main character)
+DONE - Boat (main character)
 - Package
 
 Obstacles
@@ -23,6 +23,7 @@ Obstacles
   - Firewall
   
 Environment
+DONE - Walls
   - RJ45 Gates
   - Water texture
 
@@ -75,4 +76,3 @@ Boat data delivery
 
 
 
-  
