@@ -45,7 +45,6 @@ public class CourseManager : MonoBehaviour
 
         switch (Random.Range(0, 1))
         {
-            //case 0: _minefieldSpawner.Spawn(); break;
             default: _tubeSegmentSpawner.Spawn(); break;
         }
     }

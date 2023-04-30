@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.27167144, g: 0.31132078, b: 0.3064855, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.18
+  m_FogDensity: 0.09
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.69219476, g: 0.8018868, b: 0.8018868, a: 1}
@@ -354,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 8030382320692815150, guid: 6c4856f79cd45514ba3fc8eb9032fb59,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8030382320692815150, guid: 6c4856f79cd45514ba3fc8eb9032fb59,
         type: 3}
@@ -888,54 +888,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   _landingShakeAmount: 0.02
   _hitShakeAmount: 0.2
---- !u!1 &522553843
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 522553844}
-  - component: {fileID: 522553845}
-  m_Layer: 0
-  m_Name: MineSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &522553844
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522553843}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.095, z: 20}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1031100441}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &522553845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522553843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7d9324bfedf904b9f410604ce05cb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objToSpawn: {fileID: 3491070721909712772, guid: 2d2cb92d624ba7649a7236dd892c5d8f,
-    type: 3}
-  _poolSizeAtStart: 10
-  _maxPoolSize: 100
 --- !u!1 &613937764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,10 +1064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903565b1b41011d4b975e3a523bb962f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objToSpawn: {fileID: 1343089545541008656, guid: 6c4856f79cd45514ba3fc8eb9032fb59,
-    type: 3}
-  _poolSizeAtStart: 10
-  _maxPoolSize: 100
+  _segments:
+  - {fileID: 1343089545541008656, guid: 6c4856f79cd45514ba3fc8eb9032fb59, type: 3}
+  - {fileID: 1343089545541008656, guid: 8e4850d7f72f61e48998c22cb3a16956, type: 3}
+  - {fileID: 1343089545541008656, guid: d3d585b33ddfab647926af962de7e393, type: 3}
 --- !u!1 &890935065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,11 +1396,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 800229140}
-  - {fileID: 522553844}
+  - {fileID: 145684779}
   - {fileID: 2038363089}
   - {fileID: 350532708}
   - {fileID: 1562309366}
-  - {fileID: 145684779}
   m_Father: {fileID: 1784996392}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1465,9 +1416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tubeSegmentSpawner: {fileID: 800229141}
-  _mineSpawner: {fileID: 522553845}
-  _segmentSpawnInterval: 2
-  _movement: {x: 0, y: 0, z: -5}
+  _speed: 7.5
 --- !u!1 &1115253865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,11 +2135,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TubePart1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1874042716657924360, guid: 6c4856f79cd45514ba3fc8eb9032fb59,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8030382320692815150, guid: 6c4856f79cd45514ba3fc8eb9032fb59,
         type: 3}

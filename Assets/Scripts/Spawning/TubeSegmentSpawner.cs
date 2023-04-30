@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TubeSegmentSpawner : SpawnerPooled
+public class TubeSegmentSpawner : MonoBehaviour
 {
-    protected override void OnDestroyPoolObject(GameObject obj)
-    {
-    }
+    [SerializeField]
+    private List<GameObject> _segments;
 
-    protected override void OnReturnedToPool(GameObject obj)
+    public void Spawn()
     {
-    }
-
-    protected override void OnTakeFromPool(GameObject obj)
-    {
+        Instantiate(_segments[Random.Range(0, _segments.Count)], transform);
     }
 }
