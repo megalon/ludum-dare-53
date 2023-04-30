@@ -18,4 +18,12 @@ public static class Utils
         Vector3 p1 = QuadraticPoint(b, c, d, t);
         return Vector3.Lerp(p0, p1, t);
     }
+
+    // Magic
+    public static Vector3 QuadraticTangent(Vector3 a, Vector3 b, Vector3 c, float t)
+    {
+        // Calculate the tangent vector using the derivative formula
+        Vector3 tangent = 2.0f * (1.0f - t) * (b - a) + 2.0f * t * (c - b);
+        return tangent.normalized;
+    }
 }

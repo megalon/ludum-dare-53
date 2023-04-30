@@ -15,7 +15,7 @@ public class CourseTubeSegment : MonoBehaviour
     private float _gizmoSize = 0.25f;
     private float _lineResolution = 0.05f;
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, Vector3.one * _gizmoSize);

@@ -40,6 +40,7 @@ public class CourseManager : MonoBehaviour
 
     private void Start()
     {
+        t = 0;
         SetupCurrentSegment();
     }
 
@@ -77,7 +78,15 @@ public class CourseManager : MonoBehaviour
 
         t += Speed * Time.deltaTime;
 
+        // Move the course along the path
         transform.position -= Utils.QuadraticPoint(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
+
+        // Get the tangent of the point along the path
+        Vector3 tangent = Utils.QuadraticTangent(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
+        Debug.DrawRay(_playerContainer.transform.position, tangent, Color.cyan);
+
+        // Rotate the player container to face the correct direction on the path
+        _playerContainer.transform.rotation = Quaternion.LookRotation(tangent, Vector3.up);
     }
 
     private void SetupCurrentSegment()
