@@ -7,8 +7,8 @@ public class TubeSegmentSpawner : MonoBehaviour
     [SerializeField]
     private List<GameObject> _segments;
 
-    public void Spawn()
+    public GameObject Spawn()
     {
-        Instantiate(_segments[Random.Range(0, _segments.Count)], transform);
+        return Instantiate(_segments[Random.Range(0, _segments.Count)], transform);
     }
 }

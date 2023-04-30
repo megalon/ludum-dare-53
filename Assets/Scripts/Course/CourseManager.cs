@@ -13,12 +13,14 @@ public class CourseManager : MonoBehaviour
     private GameObject _playerContainer;
 
     [SerializeField]
+    private List<CourseTubeSegment> _courseSegments;
+
+    [SerializeField]
     [Range(1, 20)]
     private float _speed = 5;
     public float Speed { get => _speed; }
 
-    private float _spawnTimer;
-    private List<Vector3> _coursePoints;
+    private Vector3 _startPos;
 
     private void Awake()
     {
@@ -29,36 +31,45 @@ public class CourseManager : MonoBehaviour
 
         Instance = this;
 
-        _spawnTimer = CalculateTimer();
+        if (_courseSegments == null)
+        {
+            _courseSegments = new List<CourseTubeSegment>();
+        }
     }
 
     private void Update()
     {
-        if (_speed == 0)
+        transform.Translate(new Vector3(0, 0, -Speed) * Time.deltaTime);
+
+        if (_courseSegments.Count <= 0)
         {
+            Debug.LogError("Coarse segments queue is empty!");
             return;
         }
 
-        if (_spawnTimer > 0)
+        // Get next segment
+        CourseTubeSegment currentSegment = _courseSegments[0];
+
+        // Distance from pos to start of this node
+        Debug.DrawLine(_playerContainer.transform.position, currentSegment.NextConnectionPoint.position, Color.red);
+
+        Vector3 direction = _playerContainer.transform.position - currentSegment.NextConnectionPoint.position;
+        float dot = Vector3.Dot(direction, currentSegment.NextConnectionPoint.forward);
+
+        // If the connection point is behind us
+        if (dot > 0)
         {
-            _spawnTimer -= Time.deltaTime;
-            return;
+            GameObject obj = _courseSegments[0].gameObject;
+            Destroy(obj);
+            _courseSegments.RemoveAt(0);
+
+            CourseTubeSegment segmentAtEndOfList = _courseSegments[_courseSegments.Count - 1];
+
+            // Spawn the next part of the course
+            obj = _tubeSegmentSpawner.Spawn();
+            obj.transform.position = segmentAtEndOfList.NextConnectionPoint.position;
+            obj.transform.rotation = segmentAtEndOfList.NextConnectionPoint.rotation;
+            _courseSegments.Add(obj.GetComponent<CourseTubeSegment>());
         }
-
-        _spawnTimer = CalculateTimer();
-
-        switch (Random.Range(0, 1))
-        {
-            default: _tubeSegmentSpawner.Spawn(); break;
-        }
-    }
-
-    // Since the tube segment is 10 units long,
-    // we need 10 / speed to get the time it takes to move the whole length
-    private float CalculateTimer()
-    {
-        if (_speed == 0) return 0;
-
-        return 10 / _speed;
     }
 }
