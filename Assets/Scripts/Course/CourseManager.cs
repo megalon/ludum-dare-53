@@ -20,7 +20,8 @@ public class CourseManager : MonoBehaviour
     private float _speed = 5;
     public float Speed { get => _speed; }
 
-    private Vector3 _startPos;
+    private CourseTubeSegment _currentSegment;
+    private float t;
 
     private void Awake()
     {
@@ -37,6 +38,11 @@ public class CourseManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SetupCurrentSegment();
+    }
+
     private void Update()
     {
         if (_courseSegments.Count <= 0)
@@ -45,17 +51,14 @@ public class CourseManager : MonoBehaviour
             return;
         }
 
-        // Get next segment
-        CourseTubeSegment currentSegment = _courseSegments[0];
+        Vector3 direction = _playerContainer.transform.position - _currentSegment.NextConnectionPoint.position;
 
-        Vector3 direction = _playerContainer.transform.position - currentSegment.NextConnectionPoint.position;
+        float dot = Vector3.Dot(direction, _currentSegment.NextConnectionPoint.forward);
 
-        float dot = Vector3.Dot(direction, currentSegment.NextConnectionPoint.forward);
-
-        Debug.DrawRay(_playerContainer.transform.position, -direction, Color.red, dot);
+        Debug.DrawRay(_playerContainer.transform.position + Vector3.up, -direction, Color.red, dot);
 
         // If the connection point is behind us
-        if (dot > 0)
+        if (dot >= 0)
         {
             GameObject obj = _courseSegments[0].gameObject;
             Destroy(obj);
@@ -69,11 +72,18 @@ public class CourseManager : MonoBehaviour
             obj.transform.rotation = segmentAtEndOfList.NextConnectionPoint.rotation;
             _courseSegments.Add(obj.GetComponent<CourseTubeSegment>());
 
-            // Get direction again now that we've modified the course
-            direction = _playerContainer.transform.position - _courseSegments[0].NextConnectionPoint.position;
+            SetupCurrentSegment();
         }
 
-        // Move towards next point
-        transform.Translate(direction.normalized * Speed * Time.deltaTime);
+        t += Speed * Time.deltaTime;
+
+        transform.position -= Utils.QuadraticPoint(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
+    }
+
+    private void SetupCurrentSegment()
+    {
+        // Get next segment
+        _currentSegment = _courseSegments[0];
+        t = 0;
     }
 }
