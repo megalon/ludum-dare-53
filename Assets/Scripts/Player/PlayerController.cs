@@ -41,9 +41,11 @@ public class PlayerController : MonoBehaviour
     {
         Move(_moveAction.ReadValue<Vector2>());
 
+        // Check if we are on the ground
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _groundedDistance)) {
             if (!_isGrounded)
             {
+                // We just landed
                 _onSplashDown.Invoke();
             }
             _isGrounded = true;
@@ -69,9 +71,10 @@ public class PlayerController : MonoBehaviour
     {
         transform.Translate(moveVector.x * _moveSpeed * Time.deltaTime, 0, 0, Space.Self);
 
-        // Keep object within x bounds
+        // Keep object within bounds
         float clampedX = Mathf.Clamp(transform.position.x, -_movementBounds.bounds.extents.x, _movementBounds.bounds.extents.x);
-        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
+        float clampedZ = Mathf.Clamp(transform.position.z, -_movementBounds.bounds.extents.x, _movementBounds.bounds.extents.x);
+        transform.position = new Vector3(clampedX, transform.position.y, clampedZ);
     }
 
     private void OnTriggerEnter(Collider other)
