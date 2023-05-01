@@ -12,6 +12,8 @@ public class CourseGenerator : MonoBehaviour
     [SerializeField]
     private TubeSegmentSpawner _tubeSegmentSpawner;
 
+    private int _segmentsCreated;
+
     private void Awake()
     {
         if (Instance != null)
@@ -25,6 +27,8 @@ public class CourseGenerator : MonoBehaviour
         {
             _courseSegments = new List<CourseTubeSegment>();
         }
+
+        _segmentsCreated = 0;
     }
 
     public CourseTubeSegment GetCurrentSegment()
@@ -42,9 +46,30 @@ public class CourseGenerator : MonoBehaviour
         CourseTubeSegment segmentAtEndOfList = _courseSegments[_courseSegments.Count - 1];
 
         // Spawn the next part of the course
-        obj = _tubeSegmentSpawner.Spawn();
+        obj = GenerateNextSegment();
         obj.transform.position = segmentAtEndOfList.GetConnectionPoint().position;
         obj.transform.rotation = segmentAtEndOfList.GetConnectionPoint().rotation;
         _courseSegments.Add(obj.GetComponent<CourseTubeSegment>());
+        _segmentsCreated++;
+    }
+
+    private GameObject GenerateNextSegment()
+    {
+        if (_segmentsCreated % 10 == 0)
+        {
+            return _tubeSegmentSpawner.SpawnGate();
+        }
+        
+        if (_segmentsCreated % 3 == 0)
+        {
+            return _tubeSegmentSpawner.SpawnRandomTurn();
+        }
+
+        if (Random.Range(0, 5) == 0)
+        {
+            return _tubeSegmentSpawner.SpawnRandomPlainSegment();
+        }
+        
+        return _tubeSegmentSpawner.SpawnRandomHostileSegment();
     }
 }

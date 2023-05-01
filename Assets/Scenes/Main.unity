@@ -1261,9 +1261,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903565b1b41011d4b975e3a523bb962f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _segments:
-  - {fileID: 1343089545541008656, guid: 8999c10ca8529e940a22605625db87c7, type: 3}
+  _plainSegments:
+  - {fileID: 1343089545541008656, guid: 6c4856f79cd45514ba3fc8eb9032fb59, type: 3}
+  _hostileSegments:
   - {fileID: 1343089545541008656, guid: c2e80c83885dd634bb073cb78457ca95, type: 3}
+  - {fileID: 1343089545541008656, guid: 8999c10ca8529e940a22605625db87c7, type: 3}
+  - {fileID: 1343089545541008656, guid: c950d0d2dd7273945bc050c1a1056b45, type: 3}
+  _turnSegments:
+  - {fileID: 1343089545541008656, guid: 1d72ef49f2d5c2a479a1cc9ac1b501dc, type: 3}
+  - {fileID: 1343089545541008656, guid: de05485ccfb5bed4db9422cbc2699864, type: 3}
+  _gateSegment: {fileID: 1343089545541008656, guid: 02d4ed576ad71e940b1cc76db938b4eb,
+    type: 3}
 --- !u!1 &890935065
 GameObject:
   m_ObjectHideFlags: 0
@@ -6944,7 +6952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1868939940
 Transform:
   m_ObjectHideFlags: 0
