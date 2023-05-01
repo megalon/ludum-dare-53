@@ -20,8 +20,13 @@ public class CourseManager : MonoBehaviour
     private float _speed = 5;
     public float Speed { get => _speed; }
 
+    [SerializeField]
+    private float _duration;
+
     private CourseTubeSegment _currentSegment;
     private float t;
+    private int _currentIndex;
+    private Vector3 _targetPoint;
 
     private void Awake()
     {
@@ -41,6 +46,7 @@ public class CourseManager : MonoBehaviour
     private void Start()
     {
         t = 0;
+        _currentIndex = 0;
         SetupCurrentSegment();
     }
 
@@ -52,41 +58,58 @@ public class CourseManager : MonoBehaviour
             return;
         }
 
-        Vector3 direction = _playerContainer.transform.position - _currentSegment.NextConnectionPoint.position;
+        transform.position -= _targetPoint - _playerContainer.transform.position;
 
-        float dot = Vector3.Dot(direction, _currentSegment.NextConnectionPoint.forward);
+        _playerContainer.transform.LookAt(_targetPoint);
 
-        Debug.DrawRay(_playerContainer.transform.position + Vector3.up, -direction, Color.red, dot);
+        Vector3 directionToTarget = _targetPoint - _playerContainer.transform.position;
+        float dotProduct = Vector3.Dot(directionToTarget, _playerContainer.transform.forward);
+        Debug.DrawRay(_playerContainer.transform.position + Vector3.up, -directionToTarget, Color.red, dotProduct);
 
-        // If the connection point is behind us
-        if (dot >= 0)
+        if (dotProduct >= 0)
         {
-            GameObject obj = _courseSegments[0].gameObject;
-            Destroy(obj);
-            _courseSegments.RemoveAt(0);
+            // We have passed the current point, go to the next point
+            _currentIndex++;
 
-            CourseTubeSegment segmentAtEndOfList = _courseSegments[_courseSegments.Count - 1];
-
-            // Spawn the next part of the course
-            obj = _tubeSegmentSpawner.Spawn();
-            obj.transform.position = segmentAtEndOfList.NextConnectionPoint.position;
-            obj.transform.rotation = segmentAtEndOfList.NextConnectionPoint.rotation;
-            _courseSegments.Add(obj.GetComponent<CourseTubeSegment>());
-
-            SetupCurrentSegment();
+            // If we have no next point, go to the next segment
+            if (_currentIndex > _currentSegment.GetNumPointsOnCurve() - 1)
+            {
+                MoveToNextSegment();
+            } else
+            {
+                Debug.Log("dotProduct part");
+                _targetPoint = _currentSegment.GetPointOnCurve(_currentIndex);
+            }
         }
 
-        t += Speed * Time.deltaTime;
 
         // Move the course along the path
-        transform.position -= Utils.QuadraticPoint(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
+        //transform.position -= Utils.QuadraticPoint(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
 
-        // Get the tangent of the point along the path
-        Vector3 tangent = Utils.QuadraticTangent(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
-        Debug.DrawRay(_playerContainer.transform.position, tangent, Color.cyan);
+        //// Get the tangent of the point along the path
+        //Vector3 tangent = Utils.QuadraticTangent(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
+        //Debug.DrawRay(_playerContainer.transform.position, tangent, Color.cyan);
 
-        // Rotate the player container to face the correct direction on the path
-        _playerContainer.transform.rotation = Quaternion.LookRotation(tangent, Vector3.up);
+        //// Rotate the player container to face the correct direction on the path
+        //_playerContainer.transform.rotation = Quaternion.LookRotation(tangent, Vector3.up);
+    }
+    
+    private void MoveToNextSegment()
+    {
+        // Remove old segment
+        GameObject obj = _courseSegments[0].gameObject;
+        Destroy(obj);
+        _courseSegments.RemoveAt(0);
+
+        CourseTubeSegment segmentAtEndOfList = _courseSegments[_courseSegments.Count - 1];
+
+        // Spawn the next part of the course
+        obj = _tubeSegmentSpawner.Spawn();
+        obj.transform.position = segmentAtEndOfList.NextConnectionPoint.position;
+        obj.transform.rotation = segmentAtEndOfList.NextConnectionPoint.rotation;
+        _courseSegments.Add(obj.GetComponent<CourseTubeSegment>());
+
+        SetupCurrentSegment();
     }
 
     private void SetupCurrentSegment()
@@ -94,5 +117,8 @@ public class CourseManager : MonoBehaviour
         // Get next segment
         _currentSegment = _courseSegments[0];
         t = 0;
+        _currentIndex = 0;
+        Debug.Log("SetupCurrentSegment part");
+        _targetPoint = _currentSegment.GetPointOnCurve(_currentIndex);
     }
 }

@@ -12,11 +12,37 @@ public class CourseTubeSegment : MonoBehaviour
     private List<Transform> _curveControlPoints;
     public List<Transform> CurveControlPoints { get => _curveControlPoints; }
 
-    private float _gizmoSize = 0.25f;
-    private float _lineResolution = 0.05f;
+    private BezierCurve bezierCurve;
 
-    private void OnDrawGizmosSelected()
+    private float _gizmoSize = 0.25f;
+
+    private void Awake()
     {
+        bezierCurve = new BezierCurve(transform.position, _curveControlPoints[0].position, NextConnectionPoint.position);
+    }
+
+    public Vector3 GetPointOnCurveTime(float t)
+    {
+        return bezierCurve.GetPoint(t) + transform.position - bezierCurve.a;
+    }
+
+    public Vector3 GetPointOnCurve(int index)
+    {
+        return bezierCurve.Points[index] + transform.position - bezierCurve.a;
+    }
+
+    public int GetNumPointsOnCurve()
+    {
+        return bezierCurve.Points.Count;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (bezierCurve == null)
+        {
+            bezierCurve = new BezierCurve(transform.position, _curveControlPoints[0].position, NextConnectionPoint.position);
+        }
+
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, Vector3.one * _gizmoSize);
 
@@ -26,33 +52,21 @@ public class CourseTubeSegment : MonoBehaviour
         Gizmos.color = Color.grey;
         Gizmos.DrawCube(_curveControlPoints[0].position, Vector3.one * _gizmoSize);
 
-        DrawQuadraticCurve(transform.position, _curveControlPoints[0].position, _nextConnectionPoint.position);
-    }
-
-    private void DrawQuadraticCurve(Vector3 a, Vector3 b, Vector3 c)
-    {
-        Vector3 prevPoint = a;
-        for (float i = 0; i < 1; i += _lineResolution)
+        Vector3 previousPoint = transform.position;
+        for (int i = 0; i < bezierCurve.Points.Count; ++i)
         {
+            Vector3 point = bezierCurve.Points[i] + transform.position - bezierCurve.a;
+
             Gizmos.color = Color.white;
-            Vector3 bezierPoint = Utils.QuadraticPoint(a, b, c, i);
-            Gizmos.DrawLine(prevPoint, bezierPoint);
-            prevPoint = bezierPoint;
+            Gizmos.DrawLine(previousPoint, point);
+
+            Gizmos.DrawSphere(point, _gizmoSize / 4);
+            previousPoint = point;
         }
     }
 
-    private Vector3 DrawCubicCurve(Vector3 a, Vector3 b, Vector3 c, Vector3 d)
+    private void OnDrawGizmosSelected()
     {
-        Vector3 prevPoint = a;
-        Debug.Log(b);
-        for (float i = 0; i < 1; i += 0.025f)
-        {
-            Gizmos.color = Color.red;
-            Vector3 bezierPoint = Utils.CubicPoint(a, b, c, d, i);
-            Gizmos.DrawLine(prevPoint, bezierPoint);
-            prevPoint = bezierPoint;
-        }
-
-        return Utils.CubicPoint(a, b, c, d, 1);
+        bezierCurve = new BezierCurve(transform.position, _curveControlPoints[0].position, NextConnectionPoint.position);
     }
 }
