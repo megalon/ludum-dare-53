@@ -9,6 +9,7 @@ public class MainState : IState
     public void Enter(StateMachine context)
     {
         Debug.Log("Entering MainState");
+        //CourseManager.Instance.StartMoving();
     }
 
     public void Update(StateMachine context) { }

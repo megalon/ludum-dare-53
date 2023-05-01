@@ -20,8 +20,10 @@ public class CourseManager : MonoBehaviour
 
     [SerializeField]
     [Range(1, 20)]
-    private float _speed = 5;
+    private float _speed = 8;
     public float Speed { get => _speed; }
+
+    private float _savedSpeedAtStart;
 
     [SerializeField]
     [Range(1, 20)]
@@ -54,11 +56,20 @@ public class CourseManager : MonoBehaviour
     private void Start()
     {
         _currentIndex = 0;
+        _savedSpeedAtStart = _speed;
+        _speed = 0;
         SetupCurrentSegment();
+    }
+
+    public void StartMoving()
+    {
+        _speed = _savedSpeedAtStart;
     }
 
     private void Update()
     {
+        if (_speed <= 0) return;
+
         if (_courseSegments.Count <= 0)
         {
             Debug.LogError("Coarse segments queue is empty!");
@@ -69,7 +80,7 @@ public class CourseManager : MonoBehaviour
 
         Vector3 directionToTarget = _targetPoint - _playerContainer.transform.position;
 
-        transform.position -= directionToTarget.normalized * Speed * Time.deltaTime;
+        transform.position -= directionToTarget.normalized * _speed * Time.deltaTime;
 
         float dotProduct = Vector3.Dot(directionToTarget, _playerContainer.transform.forward);
         Debug.DrawRay(_playerContainer.transform.position + Vector3.up, -directionToTarget, Color.red, dotProduct);
@@ -94,17 +105,6 @@ public class CourseManager : MonoBehaviour
 
         // Smooth rotate player to look at target point
         _playerContainer.transform.rotation = Quaternion.Slerp(_playerContainer.transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
-
-
-        // Move the course along the path
-        //transform.position -= Utils.QuadraticPoint(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
-
-        //// Get the tangent of the point along the path
-        //Vector3 tangent = Utils.QuadraticTangent(_currentSegment.transform.position, _currentSegment.CurveControlPoints[0].position, _currentSegment.NextConnectionPoint.position, t);
-        //Debug.DrawRay(_playerContainer.transform.position, tangent, Color.cyan);
-
-        //// Rotate the player container to face the correct direction on the path
-        //_playerContainer.transform.rotation = Quaternion.LookRotation(tangent, Vector3.up);
     }
     
     private void MoveToNextSegment()
