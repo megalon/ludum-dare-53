@@ -302,6 +302,9 @@
         },
         {
             "m_Id": "bd046aa57b67448eb0ef1bc705fd357e"
+        },
+        {
+            "m_Id": "b5dc1660d2d54519a69437157f35db5b"
         }
     ],
     "m_GroupDatas": [
@@ -937,6 +940,20 @@
                     "m_Id": "cfbd8d3ae01c42b9a1deb506b09498a4"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "b5dc1660d2d54519a69437157f35db5b"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "d3c7e0882983463db369734d5f6fa7ee"
+                },
+                "m_SlotId": 253146987
             }
         },
         {
@@ -5877,6 +5894,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "a4d3249d942c46f585c3cd4d4c29fca8",
+    "m_Id": 0,
+    "m_DisplayName": "RefractionsSpeed",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.NormalFromHeightNode",
     "m_ObjectId": "a4edcfeabc2e410d91b5a8715ee04c36",
     "m_Group": {
@@ -6473,6 +6505,41 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "b5dc1660d2d54519a69437157f35db5b",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2528.0,
+            "y": 204.79998779296876,
+            "width": 168.800048828125,
+            "height": 33.600006103515628
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "a4d3249d942c46f585c3cd4d4c29fca8"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "bd75bd1a4a174536af3c782e9616e5a1"
     }
 }
 
