@@ -15,9 +15,9 @@ public class SpeedParticlesManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CourseManager.Instance.Speed == _oldSpeed) return;
+        if (CourseMovementHandler.Instance.Speed == _oldSpeed) return;
 
-        if (CourseManager.Instance.Speed <= 0)
+        if (CourseMovementHandler.Instance.Speed <= 0)
         {
             _waterParticlesManager.StopParticleSystems();
             _speedLinesPS.Stop();
@@ -25,13 +25,13 @@ public class SpeedParticlesManager : MonoBehaviour
         }
 
         // If we were going slow before
-        if (_oldSpeed <= 2 && CourseManager.Instance.Speed > 2)
+        if (_oldSpeed <= 2 && CourseMovementHandler.Instance.Speed > 2)
         {
             _waterParticlesManager.StartParticleSystems();
         }
 
         // If we're moving fast enough for speed lines
-        if (CourseManager.Instance.Speed >= 5)
+        if (CourseMovementHandler.Instance.Speed >= 5)
         {
             _speedLinesPS.Play();
         } else
@@ -39,6 +39,6 @@ public class SpeedParticlesManager : MonoBehaviour
             _speedLinesPS.Stop();
         }
 
-        _oldSpeed = CourseManager.Instance.Speed;
+        _oldSpeed = CourseMovementHandler.Instance.Speed;
     }
 }

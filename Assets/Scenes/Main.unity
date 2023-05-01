@@ -1306,8 +1306,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1031100441}
   - component: {fileID: 1031100442}
+  - component: {fileID: 1031100443}
   m_Layer: 0
-  m_Name: CourseGenerator
+  m_Name: CourseContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1342,16 +1343,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6116e1df4e9fbaa49af1e880c6284fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tubeSegmentSpawner: {fileID: 800229141}
   _playerContainer: {fileID: 314633172}
   _pathFollowObj: {fileID: 1509759784}
+  _speed: 8
+  _rotationSpeed: 5
+  _duration: 0.5
+--- !u!114 &1031100443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031100440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3ab832bbf0252489583f3d1658ff6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _courseSegments:
   - {fileID: 2038363092}
   - {fileID: 909320711}
   - {fileID: 575539877}
-  _speed: 8
-  _rotationSpeed: 5
-  _duration: 0.5
+  _tubeSegmentSpawner: {fileID: 800229141}
 --- !u!1 &1115253865
 GameObject:
   m_ObjectHideFlags: 0
