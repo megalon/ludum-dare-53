@@ -13,6 +13,9 @@ public class CourseManager : MonoBehaviour
     private GameObject _playerContainer;
 
     [SerializeField]
+    private GameObject _pathFollowObj;
+
+    [SerializeField]
     private List<CourseTubeSegment> _courseSegments;
 
     [SerializeField]
