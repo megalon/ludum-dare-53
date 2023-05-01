@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private string _defaultActionMapName;
 
+    private string _currentActionMap;
+
     private void Awake()
     {
         // Only one instance of this class can exist at a time
@@ -24,11 +26,22 @@ public class InputManager : MonoBehaviour
         }
 
         Instance = this;
+        _currentActionMap = "";
     }
 
     // We need to enable the action map to read the values
     void OnEnable()
     {
-        _actionsAsset.FindActionMap(_defaultActionMapName).Enable();
+        SwitchToActionMap(_defaultActionMapName);
+    }
+
+    public void SwitchToActionMap(string actionMapName)
+    {
+        if (actionMapName.Equals(_currentActionMap)) return;
+
+        InputActionMap map = _actionsAsset.FindActionMap(actionMapName);
+        map.Enable();
+
+        _actionsAsset.FindActionMap(_currentActionMap).Disable();
     }
 }
