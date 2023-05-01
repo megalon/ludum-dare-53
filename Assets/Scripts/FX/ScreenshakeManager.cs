@@ -13,8 +13,6 @@ public class ScreenshakeManager : MonoBehaviour
     private GameObject _cameraObj;
     private Vector3 _cameraStartPos;
 
-
-
     [SerializeField] private float _landingShakeAmount;
     [SerializeField] private float _hitShakeAmount;
 
@@ -33,7 +31,7 @@ public class ScreenshakeManager : MonoBehaviour
     void Start()
     {
         _cameraObj = Camera.main.gameObject;
-        _cameraStartPos = _cameraObj.transform.position;
+        _cameraStartPos = _cameraObj.transform.localPosition;
     }
 
     public void Shake(float amount)
@@ -53,7 +51,7 @@ public class ScreenshakeManager : MonoBehaviour
         while (elapsedTime < shakeDuration)
         {
             Vector3 shakeOffset = Random.insideUnitSphere * intensity * shakeFalloffCurve.Evaluate(1 - elapsedTime / shakeDuration);
-            _cameraObj.transform.position = _cameraStartPos + shakeOffset;
+            _cameraObj.transform.localPosition = _cameraStartPos + shakeOffset;
 
             elapsedTime += Time.deltaTime;
 
@@ -65,6 +63,6 @@ public class ScreenshakeManager : MonoBehaviour
             yield return null;
         }
 
-        _cameraObj.transform.position = _cameraStartPos;
+        _cameraObj.transform.localPosition = _cameraStartPos;
     }
 }
