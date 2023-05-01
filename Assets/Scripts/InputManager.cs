@@ -32,16 +32,11 @@ public class InputManager : MonoBehaviour
     // We need to enable the action map to read the values
     void OnEnable()
     {
-        SwitchToActionMap(_defaultActionMapName);
+        _actionsAsset.FindActionMap(_defaultActionMapName).Enable();
     }
 
     public void SwitchToActionMap(string actionMapName)
     {
-        if (actionMapName.Equals(_currentActionMap)) return;
 
-        InputActionMap map = _actionsAsset.FindActionMap(actionMapName);
-        map.Enable();
-
-        _actionsAsset.FindActionMap(_currentActionMap).Disable();
     }
 }

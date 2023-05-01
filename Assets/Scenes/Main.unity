@@ -379,12 +379,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93611808}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &110849075 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2984036495956643798, guid: e62edef2e551c034580d35f4402d15db,
-    type: 3}
-  m_PrefabInstance: {fileID: 2984036496570056114}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &136633817
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,32 +848,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2984036496570056114}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &613937767 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8118872368087873753, guid: e62edef2e551c034580d35f4402d15db,
-    type: 3}
-  m_PrefabInstance: {fileID: 2984036496570056114}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110849075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ca5caac87a85e34b993baf718a170cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &613937770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110849075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a8e0544299aa8447b2e54c98524d9af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waterParticlesManager: {fileID: 613937767}
-  _speedLinesPS: {fileID: 1337413622}
 --- !u!1 &621990302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1206,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5780804926122583757, guid: f2ab9be2dae06ab4baa0b48f44f35788,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780804926122583757, guid: f2ab9be2dae06ab4baa0b48f44f35788,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780804926122583757, guid: f2ab9be2dae06ab4baa0b48f44f35788,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780804926122583757, guid: f2ab9be2dae06ab4baa0b48f44f35788,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1285,6 +1268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780804926122583757, guid: f2ab9be2dae06ab4baa0b48f44f35788,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8964240958133957525, guid: f2ab9be2dae06ab4baa0b48f44f35788,
         type: 3}
@@ -6862,6 +6850,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2092658052}
     m_Modifications:
+    - target: {fileID: 613937770, guid: e62edef2e551c034580d35f4402d15db, type: 3}
+      propertyPath: _speedLinesPS
+      value: 
+      objectReference: {fileID: 1337413622}
     - target: {fileID: 2984036495956643798, guid: e62edef2e551c034580d35f4402d15db,
         type: 3}
       propertyPath: m_Name

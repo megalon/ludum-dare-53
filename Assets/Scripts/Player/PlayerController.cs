@@ -32,7 +32,10 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _damageable = GetComponent<Damageable>();
+    }
 
+    private void Start()
+    {
         _moveAction = InputManager.Instance.ActionsAsset.FindActionMap(_actionMapName).FindAction("move");
         InputManager.Instance.ActionsAsset.FindActionMap(_actionMapName).FindAction("jump").performed += OnJump;
     }
@@ -72,9 +75,8 @@ public class PlayerController : MonoBehaviour
         transform.Translate(moveVector.x * _moveSpeed * Time.deltaTime, 0, 0, Space.Self);
 
         // Keep object within bounds
-        float clampedX = Mathf.Clamp(transform.position.x, -_movementBounds.bounds.extents.x, _movementBounds.bounds.extents.x);
-        float clampedZ = Mathf.Clamp(transform.position.z, -_movementBounds.bounds.extents.x, _movementBounds.bounds.extents.x);
-        transform.position = new Vector3(clampedX, transform.position.y, clampedZ);
+        float clampedX = Mathf.Clamp(transform.localPosition.x, -_movementBounds.bounds.extents.x, _movementBounds.bounds.extents.x);
+        transform.localPosition = new Vector3(clampedX, transform.localPosition.y, transform.localPosition.z);
     }
 
     private void OnTriggerEnter(Collider other)
