@@ -21,11 +21,17 @@ public class CourseManager : MonoBehaviour
     public float Speed { get => _speed; }
 
     [SerializeField]
+    [Range(1, 20)]
+    private float _rotationSpeed = 5;
+    public float RotationSpeed { get => _rotationSpeed; }
+
+    [SerializeField]
     private float _duration;
 
     private CourseTubeSegment _currentSegment;
     private int _currentIndex;
     private Vector3 _targetPoint;
+    private Quaternion _targetRotation;
 
     private void Awake()
     {
@@ -77,9 +83,14 @@ public class CourseManager : MonoBehaviour
             } else
             {
                 _targetPoint = _currentSegment.PathPoints[_currentIndex].position;
-                _playerContainer.transform.LookAt(_targetPoint);
             }
+
+            Vector3 lookDir = _targetPoint - _playerContainer.transform.position;
+            _targetRotation = Quaternion.LookRotation(lookDir);
         }
+
+        // Smooth rotate player to look at target point
+        _playerContainer.transform.rotation = Quaternion.Slerp(_playerContainer.transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
 
 
         // Move the course along the path
