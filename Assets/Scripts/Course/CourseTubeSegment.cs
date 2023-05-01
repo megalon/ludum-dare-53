@@ -5,57 +5,19 @@ using UnityEngine;
 public class CourseTubeSegment : MonoBehaviour
 {
     [SerializeField]
-    private Transform _nextConnectionPoint;
-    public Transform NextConnectionPoint { get => _nextConnectionPoint; }
-
-    [SerializeField]
-    private List<Transform> _curveControlPoints;
-    public List<Transform> CurveControlPoints { get => _curveControlPoints; }
-
-    private BezierCurve bezierCurve;
+    private List<Transform> _pathPoints;
+    public List<Transform> PathPoints { get => _pathPoints; }
 
     private float _gizmoSize = 0.25f;
 
-    private void Awake()
-    {
-        bezierCurve = new BezierCurve(transform.position, _curveControlPoints[0].position, NextConnectionPoint.position);
-    }
-
-    public Vector3 GetPointOnCurveTime(float t)
-    {
-        return bezierCurve.GetPoint(t) + transform.position - bezierCurve.a;
-    }
-
-    public Vector3 GetPointOnCurve(int index)
-    {
-        return bezierCurve.Points[index] + transform.position - bezierCurve.a;
-    }
-
-    public int GetNumPointsOnCurve()
-    {
-        return bezierCurve.Points.Count;
-    }
-
     private void OnDrawGizmos()
     {
-        if (bezierCurve == null)
+        if (PathPoints.Count <= 0) return;
+        
+        Vector3 previousPoint = PathPoints[0].position;
+        for (int i = 0; i < PathPoints.Count; ++i)
         {
-            bezierCurve = new BezierCurve(transform.position, _curveControlPoints[0].position, NextConnectionPoint.position);
-        }
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.position, Vector3.one * _gizmoSize);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(_nextConnectionPoint.position, Vector3.one * _gizmoSize);
-
-        Gizmos.color = Color.grey;
-        Gizmos.DrawCube(_curveControlPoints[0].position, Vector3.one * _gizmoSize);
-
-        Vector3 previousPoint = transform.position;
-        for (int i = 0; i < bezierCurve.Points.Count; ++i)
-        {
-            Vector3 point = bezierCurve.Points[i] + transform.position - bezierCurve.a;
+            Vector3 point = PathPoints[i].position;
 
             Gizmos.color = Color.white;
             Gizmos.DrawLine(previousPoint, point);
@@ -65,8 +27,13 @@ public class CourseTubeSegment : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    //private void OnDrawGizmosSelected()
+    //{
+    //    bezierCurve = new BezierCurve(transform.position, _curveControlPoints[0].position, NextConnectionPoint.position);
+    //}
+
+    public Transform GetConnectionPoint()
     {
-        bezierCurve = new BezierCurve(transform.position, _curveControlPoints[0].position, NextConnectionPoint.position);
+        return PathPoints[PathPoints.Count - 1];
     }
 }

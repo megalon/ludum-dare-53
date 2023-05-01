@@ -24,7 +24,6 @@ public class CourseManager : MonoBehaviour
     private float _duration;
 
     private CourseTubeSegment _currentSegment;
-    private float t;
     private int _currentIndex;
     private Vector3 _targetPoint;
 
@@ -45,7 +44,6 @@ public class CourseManager : MonoBehaviour
 
     private void Start()
     {
-        t = 0;
         _currentIndex = 0;
         SetupCurrentSegment();
     }
@@ -58,27 +56,28 @@ public class CourseManager : MonoBehaviour
             return;
         }
 
-        transform.position -= _targetPoint - _playerContainer.transform.position;
-
-        _playerContainer.transform.LookAt(_targetPoint);
+        _targetPoint = _currentSegment.PathPoints[_currentIndex].position;
 
         Vector3 directionToTarget = _targetPoint - _playerContainer.transform.position;
+
+        transform.position -= directionToTarget.normalized * Speed * Time.deltaTime;
+
         float dotProduct = Vector3.Dot(directionToTarget, _playerContainer.transform.forward);
         Debug.DrawRay(_playerContainer.transform.position + Vector3.up, -directionToTarget, Color.red, dotProduct);
 
-        if (dotProduct >= 0)
+        if (dotProduct <= 0)
         {
             // We have passed the current point, go to the next point
             _currentIndex++;
 
             // If we have no next point, go to the next segment
-            if (_currentIndex > _currentSegment.GetNumPointsOnCurve() - 1)
+            if (_currentIndex > _currentSegment.PathPoints.Count - 1)
             {
                 MoveToNextSegment();
             } else
             {
-                Debug.Log("dotProduct part");
-                _targetPoint = _currentSegment.GetPointOnCurve(_currentIndex);
+                _targetPoint = _currentSegment.PathPoints[_currentIndex].position;
+                _playerContainer.transform.LookAt(_targetPoint);
             }
         }
 
@@ -105,8 +104,8 @@ public class CourseManager : MonoBehaviour
 
         // Spawn the next part of the course
         obj = _tubeSegmentSpawner.Spawn();
-        obj.transform.position = segmentAtEndOfList.NextConnectionPoint.position;
-        obj.transform.rotation = segmentAtEndOfList.NextConnectionPoint.rotation;
+        obj.transform.position = segmentAtEndOfList.GetConnectionPoint().position;
+        obj.transform.rotation = segmentAtEndOfList.GetConnectionPoint().rotation;
         _courseSegments.Add(obj.GetComponent<CourseTubeSegment>());
 
         SetupCurrentSegment();
@@ -116,9 +115,9 @@ public class CourseManager : MonoBehaviour
     {
         // Get next segment
         _currentSegment = _courseSegments[0];
-        t = 0;
-        _currentIndex = 0;
-        Debug.Log("SetupCurrentSegment part");
-        _targetPoint = _currentSegment.GetPointOnCurve(_currentIndex);
+
+        // Skip 0 index since we are already there
+        _currentIndex = 1;
+        _targetPoint = _currentSegment.PathPoints[_currentIndex].position;
     }
 }
