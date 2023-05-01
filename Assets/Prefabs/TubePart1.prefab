@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8030382320692815150}
-  - component: {fileID: 8173066915382239576}
   - component: {fileID: 692557895951785711}
   m_Layer: 0
   m_Name: TubePart1
@@ -38,22 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8173066915382239576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343089545541008656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e01a17a4a549a14ab15d0960ea604fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lifetime: 10
-  TimerComplete:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &692557895951785711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +121,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8030382320692815150}
     m_Modifications:
+    - target: {fileID: 540130220742488, guid: 7a910923a5e6a4a41a3d6ea583986df4, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3265581816081765153, guid: 7a910923a5e6a4a41a3d6ea583986df4,
         type: 3}
       propertyPath: m_Name
