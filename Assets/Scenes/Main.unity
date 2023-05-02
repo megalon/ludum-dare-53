@@ -7140,6 +7140,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2984036496735512825, guid: e62edef2e551c034580d35f4402d15db,
+        type: 3}
+      propertyPath: _packageSpacing.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984036496735512825, guid: e62edef2e551c034580d35f4402d15db,
+        type: 3}
+      propertyPath: _packageSpacing.z
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984036496735512825, guid: e62edef2e551c034580d35f4402d15db,
+        type: 3}
+      propertyPath: _parentBoxesToThis
+      value: 
+      objectReference: {fileID: 2092658051}
     - target: {fileID: 8118872368087873750, guid: e62edef2e551c034580d35f4402d15db,
         type: 3}
       propertyPath: _movementBounds

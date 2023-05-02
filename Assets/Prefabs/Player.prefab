@@ -5136,7 +5136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2984036496735512827}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.134}
+  m_LocalPosition: {x: 0, y: -0.0046, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5159,7 +5159,8 @@ MonoBehaviour:
     type: 3}
   _lerpSpeed: 25
   _damageable: {fileID: 8118872368087873752}
-  _packageSpacing: {x: 0, y: 0, z: -0.1}
+  _packageSpacing: {x: 0, y: 0, z: -0.15}
+  _parentBoxesToThis: {fileID: 0}
 --- !u!1 &2984036497902548978
 GameObject:
   m_ObjectHideFlags: 0
