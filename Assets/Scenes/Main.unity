@@ -754,6 +754,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2571721139497253640, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2815363559031970103, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -762,7 +767,7 @@ PrefabInstance:
     - target: {fileID: 2815363559031970103, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.462
       objectReference: {fileID: 0}
     - target: {fileID: 2815363559031970103, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
@@ -772,7 +777,7 @@ PrefabInstance:
     - target: {fileID: 2815363559031970103, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.29
+      value: 2.339
       objectReference: {fileID: 0}
     - target: {fileID: 2815363559031970103, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
@@ -812,17 +817,17 @@ PrefabInstance:
     - target: {fileID: 4821162813509907287, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.425
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4821162813509907287, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.235
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4821162813509907287, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6043303421584490326, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
@@ -835,6 +840,11 @@ PrefabInstance:
       value: Firewall
       objectReference: {fileID: 0}
     - target: {fileID: 8445324454142521367, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861016758535206283, guid: 61a64a71ceafb554f9e993fdd01cf2a9,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1556,7 +1566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerContainer: {fileID: 314633172}
   _pathFollowObj: {fileID: 1509759784}
-  _speed: 10
+  _speed: 12
   _rotationSpeed: 5
 --- !u!114 &1031100443
 MonoBehaviour:
