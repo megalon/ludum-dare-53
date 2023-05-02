@@ -31,7 +31,7 @@ public class SpeedParticlesManager : MonoBehaviour
         }
 
         // If we're moving fast enough for speed lines
-        if (CourseMovementHandler.Instance.Speed >= 5)
+        if (CourseMovementHandler.Instance.Speed >= 8)
         {
             _speedLinesPS.Play();
         } else
