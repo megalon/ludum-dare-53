@@ -87,7 +87,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 26130
+  controlID: 47263
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -443,7 +443,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -482,9 +482,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.3375448, y: -7.254463, z: 22.17291}
+    m_Target: {x: -0.41865554, y: 0.4659515, z: -0.7710551}
     speed: 2
-    m_Value: {x: 1.3375448, y: -7.254463, z: 22.17291}
+    m_Value: {x: -0.41865554, y: 0.4659515, z: -0.7710551}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -531,13 +531,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.15557806, y: 0.035860855, z: -0.0056436304, w: 0.9871966}
+    m_Target: {x: -0.18522596, y: -0.0129830865, z: 0.002474684, w: -0.9826604}
     speed: 2
-    m_Value: {x: 0.1555719, y: 0.035859432, z: -0.0056434064, w: 0.98715746}
+    m_Value: {x: -0.18374212, y: -0.012986104, z: 0.0024550739, w: -0.9828856}
   m_Size:
-    m_Target: 12.124355
+    m_Target: 0.10825317
     speed: 2
-    m_Value: 12.124355
+    m_Value: 0.10825317
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -3229,21 +3229,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3878f4ff4e78f4ffce78f4ff8091f4ff3016f5ff9e19f5ff141df5ffac39f5ff723af5ff683ef5ff2e83fdff3a68feffdcfaffff30fbffff9a680000d8680000146900002269000026690000c0b40000feb4000010b50000bcbe00003abf000048bf00004cbf0000
+      m_ExpandedIDs: feeaedff3878f4ffce78f4ff8091f4ff3016f5ff9e19f5ff141df5ffac39f5ff723af5ff683ef5ff2e83fdff3a68feffdcfaffff30fbffff9a680000d8680000146900002269000026690000c0b40000feb4000010b50000bcbe00003abf000048bf00004cbf0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: PathPoint (10)
-        m_OriginalName: PathPoint (10)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -1009762
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -3322,21 +3322,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/CourseSegments
+    - Assets/Visuals/Materials
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/CourseSegments
+  - Assets/Visuals/Materials
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\UnityProjects\LudumDare-53
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1c880000
-    m_LastClickedID: 34844
+    m_SelectedIDs: 446d0000
+    m_LastClickedID: 27972
     m_ExpandedIDs: 000000000e6d0000106d0000366d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -3396,18 +3396,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 265d00007c0b010018100100cc15010092c60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: TubePartEyes1
-      m_OriginalName: TubePartEyes1
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 50834
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -3519,21 +3519,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Visuals/Models
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Visuals/Models
+  - Assets/Prefabs
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\UnityProjects\LudumDare-53
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 466d0000
-    m_LastClickedID: 27974
+    m_SelectedIDs: 366d0000
+    m_LastClickedID: 27958
     m_ExpandedIDs: 000000000e6d0000106d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -3593,18 +3593,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c623000000000000c6720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Main
-      m_OriginalName: Main
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 27980
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 15}
     m_CreateAssetUtility:
@@ -3952,8 +3952,8 @@ MonoBehaviour:
     y: 0
     width: 566
     height: 356
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -3983,7 +3983,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 25921
+  controlID: 47229
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -4079,7 +4079,7 @@ MonoBehaviour:
     x: 1501
     y: 73
     width: 418
-    height: 572
+    height: 586
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
