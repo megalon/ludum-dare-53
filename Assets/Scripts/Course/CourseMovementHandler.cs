@@ -72,9 +72,6 @@ public class CourseMovementHandler : MonoBehaviour
         // Move the transform
         transform.position -= directionToTarget.normalized * _speed * Time.deltaTime;
 
-        // Update the water offset
-        _waterMaterial.SetVector("_Offset", new Vector2(transform.position.x, transform.position.z));
-
         // Use the dot product to determine if target is in front of us, or we have passed it
         float dotProduct = Vector3.Dot(directionToTarget, _playerContainer.transform.forward);
 
@@ -98,6 +95,10 @@ public class CourseMovementHandler : MonoBehaviour
 
         // Smooth rotate player to look at target point
         _playerContainer.transform.rotation = Quaternion.Slerp(_playerContainer.transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
+
+        // Update the water offset
+        _waterMaterial.SetVector("_Offset", new Vector2(transform.position.x, transform.position.z));
+        //_waterMaterial.SetFloat("_OffsetRotation", -_playerContainer.transform.rotation.eulerAngles.y);
     }
 
     private void SetupCurrentSegment()
