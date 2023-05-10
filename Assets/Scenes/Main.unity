@@ -1568,6 +1568,7 @@ MonoBehaviour:
   _pathFollowObj: {fileID: 1509759784}
   _speed: 12
   _rotationSpeed: 5
+  _waterMaterial: {fileID: 2100000, guid: feac0c44ae6de684ead4a7cf8849d451, type: 2}
 --- !u!114 &1031100443
 MonoBehaviour:
   m_ObjectHideFlags: 0

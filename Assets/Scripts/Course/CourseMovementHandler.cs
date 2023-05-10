@@ -24,6 +24,9 @@ public class CourseMovementHandler : MonoBehaviour
     private float _rotationSpeed = 5;
     public float RotationSpeed { get => _rotationSpeed; }
 
+    [SerializeField]
+    private Material _waterMaterial;
+
     private CourseTubeSegment _currentSegment;
     private int _currentIndex;
     private Vector3 _targetPoint;
@@ -66,6 +69,7 @@ public class CourseMovementHandler : MonoBehaviour
 
         Vector3 directionToTarget = _targetPoint - _playerContainer.transform.position;
 
+        // Move the transform
         transform.position -= directionToTarget.normalized * _speed * Time.deltaTime;
 
         // Use the dot product to determine if target is in front of us, or we have passed it
@@ -91,6 +95,10 @@ public class CourseMovementHandler : MonoBehaviour
 
         // Smooth rotate player to look at target point
         _playerContainer.transform.rotation = Quaternion.Slerp(_playerContainer.transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
+
+        // Update the water offset
+        _waterMaterial.SetVector("_Offset", new Vector2(transform.position.x, transform.position.z));
+        //_waterMaterial.SetFloat("_OffsetRotation", -_playerContainer.transform.rotation.eulerAngles.y);
     }
 
     private void SetupCurrentSegment()

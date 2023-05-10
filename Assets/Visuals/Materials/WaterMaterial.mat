@@ -93,7 +93,7 @@ Material:
     - _EnvironmentReflections: 1
     - _Foam: 0.17
     - _FoamCutoff: 1
-    - _FoamScale: 108.8
+    - _FoamScale: 282.3
     - _FoamSpeed: 1.41
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -101,14 +101,17 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _OffsetRotation: -0.50994015
+    - _OffsetScale: 0.047
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RefractionScale: -0.78
+    - _RefractionScale: 0.8
+    - _RefractionSpeed: 0.004
     - _RefractionStrength: -0.49
     - _RefractionsSpeed: 0.55
-    - _RipplesDensity: 84.14
+    - _RipplesDensity: 166.8
     - _RipplesStrength: 5
     - _Shininess: 0
     - _Smoothness: 0.5
@@ -129,10 +132,11 @@ Material:
     - _Color: {r: 0.4425062, g: 0.74803007, b: 0.8301887, a: 1}
     - _DataColor: {r: 0, g: 1, b: 0.038177013, a: 0}
     - _DataSpeed: {r: 0, g: 0.1, b: 0, a: 0}
-    - _DataTiling: {r: 5.6, g: 0, b: 0, a: 0}
+    - _DataTiling: {r: 7.97, g: 0, b: 0, a: 0}
     - _Deep: {r: 0.005181517, g: 0.03954625, b: 0.05612849, a: 0.5176471}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0.74509805}
+    - _Offset: {r: -33.44186, g: -77.72999, b: 0, a: 0}
     - _RipplesColor: {r: 0.4705881, g: 0.1882352, b: 0.3098038, a: 0.20392157}
     - _Shallow: {r: 0, g: 0.3564003, b: 0.3864295, a: 0.6666667}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
